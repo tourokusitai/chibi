@@ -17,7 +17,7 @@ class Expr(object):
         return Val(v)
 
 class Val(Expr):
-    __slot__ = ['value']
+    __slots__ = ['value']
     def __init__(self, value):
         self.value = value
     def __repr__(self):
@@ -28,7 +28,7 @@ e = Val(0)
 assert e.eval({}) == 0
 
 class Binary(Expr):
-    __slot__ = ['left', 'right']
+    __slots__ = ['left', 'right']
     def __init__(self, left, right):
         self.left = Expr.new(left)
         self.right = Expr.new(right)
@@ -37,32 +37,32 @@ class Binary(Expr):
         return f'{classname}({self.left},{self.right})'
 
 class Add(Binary):
-    __slot__ = ['left', 'right']
+    __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) + self.right.eval(env)
 
 class Sub(Binary):
-    __slot__ = ['left', 'right']
+    __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) - self.right.eval(env)
 
 class Mul(Binary):
-    __slot__ = ['left', 'right']
+    __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) * self.right.eval(env)
 
 class Div(Binary):
-    __slot__ = ['left', 'right']
+    __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) // self.right.eval(env)
 
 class Mod(Binary):
-    __slot__ = ['left', 'right']
+    __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) % self.right.eval(env)  
     
 class Var(Expr):
-    __slot__(self,name):
+    __slots__(self,name):
     def __init(self,name)
         self.name = name
     def eval(self, env: dict):
@@ -71,6 +71,14 @@ class Var(Expr):
     raise NameError(self.name) 
 
 class Assign(Expr):
+    __slots__ = ['name','e']
+    def __init__(self,name,e):
+        self.name = name
+        self.e = Expr.new(e)
+
+    def eval(self,env):
+        env[self.name] = self.e.eval(env)
+        return env[self.name]
 
 print('少しテスト')
 env = {}
@@ -103,7 +111,7 @@ class Expr(object):
             return v
         return Val(v)
 class Val(Expr):
-    __slot__ = ['value']
+    __slots__ = ['value']
     def __init__(self, value):
         self.value = value
     def __repr__(self):
@@ -113,7 +121,7 @@ class Val(Expr):
 e = Val(0)
 assert e.eval({}) == 0
 class Binary(Expr):
-    __slot__ = ['left', 'right']
+    __slots__ = ['left', 'right']
     def __init__(self, left, right):
         self.left = Expr.new(left)
         self.right = Expr.new(right)
@@ -121,23 +129,23 @@ class Binary(Expr):
         classname = self.__class__.__name__
         return f'{classname}({self.left},{self.right})'
 class Add(Binary):
-    __slot__ = ['left', 'right']
+    __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) + self.right.eval(env)
 class Sub(Binary):
-    __slot__ = ['left', 'right']
+    __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) - self.right.eval(env)
 class Mul(Binary):
-    __slot__ = ['left', 'right']
+    __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) * self.right.eval(env)
 class Div(Binary):
-    __slot__ = ['left', 'right']
+    __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) // self.right.eval(env)
 class Mod(Binary):
-    __slot__ = ['left', 'right']
+    __slots__ = ['left', 'right']
     def eval(self, env: dict):
         return self.left.eval(env) % self.right.eval(env)
 def conv(tree):
