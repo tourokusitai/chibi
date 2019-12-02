@@ -59,7 +59,7 @@ class Var(Expr):
     def eval(self, env: name):
         return env[self.name]
     raise NameError(self.name)
-claas Assign(Expr):
+class Assign(Expr):
         __slots__ = ['name','e']
         def __init__(self, name, e):
             self.name = name
