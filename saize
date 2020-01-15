@@ -1,0 +1,6 @@
+import random
+
+marks = ['jhfgb', 'okgfo', 'mokf', 'lf']
+
+
+print(random.choice(marks))
